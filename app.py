@@ -28,7 +28,7 @@ Country = Base.classes.country
 Covid = Base.classes.covid
 H1N1 = Base.classes.h1n1
 Global_Covid = Base.classes.global_covid_data
-#Global_H1N1 = Base.classes.global_h1n1_data
+# Global_H1N1 = Base.classes.global_h1n1_data
 
 # 2. create an app, being sure to pass name
 app = Flask(__name__)
