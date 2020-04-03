@@ -12,4 +12,21 @@ COVID
     
     - "h1n1" = Total dataset for H1N1. Includes country, confirmed cases, Deaths, date data was updated (all cumulative data)
     
-    
+
+What graphs do we want to show? 
+    - COVID overview by Country (heatmap)
+        - Confirmed Cases 
+        - Deaths
+        - Recovered
+        - Mortality Rate
+        - Recovered Rate
+    - Daily increase in COVID vs daily increase in H1N1 from country selection 
+        - Confirmed Cases
+        - Deaths
+    - Country Comparison with COVID vs H1N1 (all-time data located in global tables)
+        - Confirmed Cases
+        - Deaths
+        - Recovered (for H1N1: Recovered = Cases - Deaths)
+        
+
+    - 
