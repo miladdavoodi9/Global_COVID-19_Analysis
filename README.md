@@ -31,4 +31,5 @@ What graphs do we want to show?
     
         
 
-    - 
+How to update database?
+    - Enter "python ./run.py" in terminal to execute the script and update the database
