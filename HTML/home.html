@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 vs. H1N1 </title>
+    <link rel="stylesheet" href="static/style.css">
+
+    <style>
+        #style1 {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333333;
+        }
+        
+        li {
+          float: left;
+        }
+        
+        li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 16px;
+          text-decoration: none;
+        }
+        
+        li a:hover {
+          background-color: #111111;
+        }
+        
+        #collapsible {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        }
+        .active, .collapsible:hover {
+            background-color: #ccc;
+        }
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+            }
+    </style>
+    
+    <script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight){
+                content.style.maxHeight = null;
+            }
+            else
+            {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+        }
+    </script>
+</head>
+<body>
+    <nav class = "navbar">
+        <a class = "navbar-brand col-sm-3 col-md 2 mr-0" href="#"> COVID-19 vs. H1N1</a>
+        <div id = "style1">
+
+            <ul id = "style1">
+                 <li> <a href = "#"> Home </a> </li>
+                <li> <a href = "#" > COVID-19 </a></li>
+                <li> <a href = "#" > H1N1 </a></li>
+                <li> <a href = "#" > COVID-19 vs.H1N1 Trends</a></li>
+                <li> <a href = "#" > Top Countries </a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <button type="button" class="collapsible">Open Collapsible</button>
+    <div class="content">
+        <p>Coronavirus disease (COVID-19) is an infectious disease caused by a new virus.
+            The disease causes respiratory illness (like the flu) with symptoms such as a cough,
+            fever, and in more severe cases, difficulty breathing.</p>
+    </div>
+</body>
+</html>
