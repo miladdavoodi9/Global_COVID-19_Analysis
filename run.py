@@ -232,4 +232,6 @@ h1n1.to_sql(name='h1n1', con=engine, index=True, if_exists='append')
 global_h1n1_data.to_sql('global_h1n1_data', con=engine, index=True, if_exists='append')
 
 
+print("Complete!! all COVID19 data is now up to date in its sqlite database and ready to run program")
+
 
