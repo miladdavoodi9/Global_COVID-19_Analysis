@@ -161,6 +161,11 @@ covid = covid.replace({"Country": replace_values})
 
 covid = covid[['Country', 'Province', 'Date', 'Confirmed', 'Deaths', 'Recovered']]
 
+mask = (covid['Country'] == 'Taiwan')
+filler = 'Taiwan'
+
+covid.loc[covid['Province'].isnull() & mask, 'Province'] = filler
+
 #Group Provinces and take largest cumulative confirmed and death number
 province_df = covid.groupby(by='Province').agg('max').reset_index(drop=False)
 
@@ -231,7 +236,12 @@ h1n1.to_sql(name='h1n1', con=engine, index=True, if_exists='append')
 
 global_h1n1_data.to_sql('global_h1n1_data', con=engine, index=True, if_exists='append')
 
-
-print("Complete!! all COVID19 data is now up to date in its sqlite database and ready to run program")
+print("*******************************************************************************************")
+print("*******************************************************************************************")
+print(" ")
+print("Complete!! all COVID19 data is now up to date in its sqlite database and ready to run Flask")
+print(" ")
+print("*******************************************************************************************")
+print("*******************************************************************************************")
 
 
