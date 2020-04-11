@@ -60,7 +60,7 @@ Base.prepare(engine, reflect=True)
 
 #Save reference to the table
 Country = Base.classes.country
-Covid = Base.classes.covid
+Covid_2 = Base.classes.covid
 H1N1 = Base.classes.h1n1
 Global_Covid = Base.classes.global_covid_data
 Global_H1N1 = Base.classes.global_h1n1_data
@@ -88,11 +88,11 @@ def covid():
     # Connect, query, and close session
     session = Session(engine)
     results = session.query(
-        Covid.Country, 
-        Covid.Date,
-        Covid.Confirmed, 
-        Covid.Deaths, 
-        Covid.Recovered
+        Covid_2.Country, 
+        Covid_2.Date,
+        Covid_2.Confirmed, 
+        Covid_2.Deaths, 
+        Covid_2.Recovered
         ).all()
     session.close()
 
