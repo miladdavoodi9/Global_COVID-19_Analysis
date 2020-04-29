@@ -111,6 +111,16 @@ global_h1n1_data = """CREATE TABLE "global_h1n1_data" (
 	PRIMARY KEY("index")
 );"""
 
+covid_2 = """CREATE TABLE "covid_2" (
+	"index"	INTEGER,
+    "Date"	DATETIME, 
+	"Country"	TEXT,
+	"Confirmed"	FLOAT,
+	"Deaths"	FLOAT,
+	"Recovered"	FLOAT,
+	PRIMARY KEY("index")
+);"""
+
 
 # In[14]:
 
@@ -147,6 +157,7 @@ csv_path3 = "Resources/global_h1n1.csv"
 covid = pd.read_csv(csv_path, parse_dates=["ObservationDate"])
 h1n1 = pd.read_csv(csv_path2, parse_dates=["Update Time"],encoding = 'unicode_escape')
 global_h1n1_data = pd.read_csv(csv_path3)
+covid_2 = pd.read_csv(csv_path, parse_dates=["ObservationDate"])
 
 covid = covid.loc[:,['ObservationDate', 'Province/State', 'Country/Region', 'Confirmed', 'Deaths', 'Recovered']]
 
@@ -221,11 +232,20 @@ h1n1 = h1n1[['Country_ID', 'Country', 'Date', 'Confirmed', 'Deaths']]
 
 country_df[['Country_ID', 'Country']]
 
+#Take out Province Column in time series for countries
+covid_2 = covid_2.loc[:,['ObservationDate', 'Province/State', 'Country/Region', 'Confirmed', 'Deaths', 'Recovered']]
+
+#Rename Columns
+covid_2 = covid_2.rename(columns={"ObservationDate": "Date", "Province/State" : "Province", "Country/Region" : "Country"})
+
+covid_2 = covid_2.groupby(['Date', 'Country'])[["Confirmed", "Deaths", "Recovered"]].sum()
+
+covid_2 = covid_2.reset_index()
+
 engine = create_engine("sqlite:///COVID19_vs_H1N1.sqlite")
 conn = engine.connect()
 
 country_df.to_sql('country', con=engine, index=False, if_exists='append')
-
 
 global_covid_data.to_sql('global_covid_data', con=engine, index=True, if_exists='append')
 #engine.execute("SELECT * FROM global_covid_data").fetchall()
@@ -236,10 +256,12 @@ h1n1.to_sql(name='h1n1', con=engine, index=True, if_exists='append')
 
 global_h1n1_data.to_sql('global_h1n1_data', con=engine, index=True, if_exists='append')
 
+covid_2.to_sql(name='covid_2', con=engine, index=True, if_exists='append')
+
 print("*******************************************************************************************")
 print("*******************************************************************************************")
 print(" ")
-print("Complete!! all COVID19 data is now up to date in its sqlite database and ready to run Flask")
+print("Complete!! all COVID19 data is now up to date in its sqlite database and ready to run the API")
 print(" ")
 print("*******************************************************************************************")
 print("*******************************************************************************************")

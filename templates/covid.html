@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <style>
+        #style1 {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333333;
+        }
+        
+        li {
+            float: left;
+        }
+        
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+        }
+        
+        li a:hover {
+            background-color: #111111;
+        }
+    </style>
+    <nav class="navbar">
+        <a class="navbar-brand col-sm-3 col-md 2 mr-0" href="#"> </a>
+        <div id="style1">
+            <ul id="style1">
+                <li> <a href="http://127.0.0.1:5000/C"> COVID-19 </a></li>
+                <li> <a href="http://127.0.0.1:5000/"> H1N1 </a></li>
+                <li> <a href="http://127.0.0.1:5000/Top_Countries"> Top Countries </a></li>
+            </ul>
+        </div>
+    </nav>
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://www.chartjs.org"></script>
+
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+</head>
+
+<body>
+    <div id="chartContainer" style="height: 400px; width: 100%;"></div>
+    <!-- Color Scale -->
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <!--Connection to Javascript s-->
+    <script src="{{ url_for('static', filename='covid.js') }}"></script>
+
+
+</body>
+
+</html>
