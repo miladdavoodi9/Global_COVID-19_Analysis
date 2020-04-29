@@ -1,6 +1,12 @@
 # 1. import Flask
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask import (
+    Flask,
+    render_template,
+    jsonify,
+    request,
+    redirect)
 
 import pandas as pd
 import numpy as np 
@@ -24,6 +30,27 @@ def get_rate(input_value, conf):
         return(input_value / conf)
     except (ZeroDivisionError, TypeError):
         return(0)
+    
+def append_data_to_dict(input_dict, cou, dat, con, dth, rec):
+    input_dict[cou]["Date"].append(dat)
+    input_dict[cou]["Confirmed"].append(con)
+    input_dict[cou]["Deaths"].append(dth)
+    input_dict[cou]["Recovered"].append(rec)
+    input_dict[cou]["Recovery_Rate"].append(get_rate(rec, con))
+    input_dict[cou]["Death_Rate"].append(get_rate(dth, con))
+
+def start_data_dict(input_dict, cou, dat, con, dth, rec):
+    input_dict[cou] = {
+        "Date": [dat],
+        "Confirmed": [con],
+        "Deaths": [dth],
+        "Recovered": [rec],
+        "Recovery_Rate": [get_rate(rec, con)],
+        "Death_Rate": [get_rate(dth, con)]
+    }
+
+
+
 
 engine = create_engine("sqlite:///COVID19_vs_H1N1.sqlite")
 conn = engine.connect()
@@ -39,7 +66,7 @@ Base.prepare(engine, reflect=True)
 
 #Save reference to the table
 Country = Base.classes.country
-Covid = Base.classes.covid
+Covid_2 = Base.classes.covid
 H1N1 = Base.classes.h1n1
 Global_Covid = Base.classes.global_covid_data
 Global_H1N1 = Base.classes.global_h1n1_data
@@ -49,77 +76,46 @@ app = Flask(__name__)
 
 # 3. Define Route
 @app.route("/")
-def welcome():
-    return(
-        f"Thank you for using our COVID vs. H1N1 application!</br></br>"
+def home():
+    return render_template("global_h1n1.html")
+#    return(
+#         f"Thank you for using our COVID vs. H1N1 application!</br></br>"
+#         f"Below are the available routes that can be taken...</br>"
+#         f"/covid</br>"
+#         f"/global_covid</br>"
+#         f"/h1n1</br>"
+#         f"/global_h1n1</br>")
 
-        f"Below are the available routes that can be taken...</br>"
-        f"/covid</br>"
-        f"/global_covid</br>"
-        f"/h1n1</br>"
-        f"/global_h1n1</br>"
-    )
+@app.route("/C")
+def covid_page():
+    return render_template("covid.html")
+@app.route("/Top_Countries")
+def selected_countries():
+    return render_template("Top_Countries_COVID.html")
 
+@app.route("/covid")
+def covid():
 
-# @app.route("/covid")
-# def covid():
+    # Connect, query, and close session
+    session = Session(engine)
+    results = session.query(
+        Covid_2.Country, 
+        Covid_2.Date,
+        Covid_2.Confirmed, 
+        Covid_2.Deaths, 
+        Covid_2.Recovered
+        ).all()
+    session.close()
 
-#     # Connect, query, and close session
-#     session = Session(engine)
-#     results = session.query(
-#         Covid.Country, 
-#         Covid.Province,
-#         Covid.Date,
-#         Covid.Confirmed, 
-#         Covid.Deaths, 
-#         Covid.Recovered
-#         ).all()
-#     session.close()
+    country_dict = {}
+ 
+    for country, date, confirmed, deaths, recovered in results:
+        if country in country_dict.keys():
+            append_data_to_dict(country_dict, country, date, confirmed, deaths, recovered)
+        else:
+            start_data_dict(country_dict, country, date, confirmed, deaths, recovered)
 
-#     countries_list = []
-#     # val_list = []
-    
-#     country_dict = {}
-#     province_dict = {}
-#     data_dict = {}
-
-#     def build_temp_data_dict(date, confirmed, deaths, recovered):
-#         temp_data_dict = {
-#             "Date": date,
-#             "Confirmed": confirmed,
-#             "Deaths": deaths,
-#             "Recovered": recovered,
-#             "Revcovery_Rate": get_rate(recovered, confirmed),
-#             "Death_Rate": get_rate(deaths, confirmed)
-#         }
-#         return(temp_data_dict)
-
-
-#     for country, province, date, confirmed, deaths, recovered in results:
-#         countries_list.append(country)
-        
-#         if country in country_dict:
-#             pass
-#         else:
-#             country_dict[country] = {}
-#             if province is None:
-#                 data_dict["Date"].append(date.strftime('%Y-%m-%d'))
-#                 data_dict["Confirmed"].append{confirmed}
-#                 data_dict["Deaths"].append(deaths)
-#                 data_dict["Recovered"].append(recovered)
-#                 data_dict["Recovery_Rate"].append(get_rate(recovered, confirmed))
-#                 data_dict["Death_Rate"].append(get_rate(deaths, confirmed))
-#             else:
-            
-
-#         data_dict["Province"] = province
-            
-
-#         val_list.append(data_dict)
-
-
-#     return jsonify(covid_dict)
-
+    return jsonify(country_dict)
 
 @app.route("/global_covid")
 def global_covid():
@@ -185,8 +181,6 @@ def global_h1n1():
 
     return jsonify(global_h1n1_dict)
 
-
-
 @app.route("/h1n1")
 def h1n1():
 
@@ -201,47 +195,50 @@ def h1n1():
     session.close()
 
     country_dict = {}
-
-    # def start_country_data_dict(dat, con, dth, rec):
-    #     temp_data_dict = {
-    #         "Date": [dat],
-    #         "Confirmed": [con],
-    #         "Deaths": [dth],
-    #         "Recovered": [rec],
-    #         "Recovery_Rate": [get_rate(rec, con)],
-    #         "Death_Rate": [get_rate(dth, con)]
-    #     }
-    #     return(temp_data_dict)
-
-    def append_country_data_to_dict(cou, dat, con, dth, rec):
-        country_dict[cou]["Date"].append(dat)
-        country_dict[cou]["Confirmed"].append(con)
-        country_dict[cou]["Deaths"].append(dth)
-        country_dict[cou]["Recovered"].append(rec)
-        country_dict[cou]["Recovery_Rate"].append(get_rate(rec, con))
-        country_dict[cou]["Death_Rate"].append(get_rate(dth, con))
-    
+ 
     for country, date, confirmed, deaths in results:
         recovered = get_recovered(confirmed, deaths)        
-        if country in country_dict:
-            append_country_data_to_dict(country, date, confirmed, deaths, recovered)
+        if country in country_dict.keys():
+            append_data_to_dict(country_dict, country, date, confirmed, deaths, recovered)
         else:
-            country_dict[country] =  {
-                "Date": [date],
-                "Confirmed": [confirmed],
-                "Deaths": [deaths],
-                "Recovered": [recovered],
-                "Recovery_Rate": [get_rate(recovered, confirmed)],
-                "Death_Rate": [get_rate(deaths, confirmed)]
-            }
-            # {
-            #     start_country_data_dict(date, confirmed, deaths, recovered)
-            # }
-
+            start_data_dict(country_dict, country, date, confirmed, deaths, recovered)
             
             
     return jsonify(country_dict)
 
+@app.route("/global_h1n1_graph_data")
+def global_h1n1_graph(): 
+    session = Session(engine)
+    results = session.query(
+        Global_H1N1.Country, 
+        Global_H1N1.Confirmed, 
+        Global_H1N1.Deaths, 
+        ).all()
+    session.close()
+    
+    countries = []
+    confirmed_cases = []
+    death_count = []
+    for (country, confirmed, deaths) in results: 
+        countries.append(country)
+        confirmed_cases.append(confirmed)
+        death_count.append(deaths)
+    
+    # Generate the plot trace
+    # trace1 = {
+    #     "x": countries,
+    #     "y": confirmed_cases,
+    #     type:'bar'
+    # }
+    # trace2 = {
+    #     "x": countries,
+    #     "y": death_count, 
+    #     type: 'bar'
+    # }
+    # data = [trace1, trace2]
+    # graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
+    # # return render_template('global_h1n1.html', graphJSON=graphJSON)
+    return jsonify(countries, confirmed_cases, death_count)
 # 4. Define main bahavior
 if __name__ == "__main__":
     app.run(debug=True)
