@@ -1,4 +1,9 @@
 # Project-3---COVID19_vs_H1N1
+Dataset: Data from https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset - updated daily
+
+ - Update Dataset with new daily load
+ - Enter "python ./run.py" in terminal to execute the script and update the database
+ - Run app.py (Flask app)
 
 Tables:
 COVID
@@ -12,24 +17,4 @@ COVID
     
     - "h1n1" = Total dataset for H1N1. Includes country, confirmed cases, Deaths, date data was updated (all cumulative data)
     
-
-What graphs do we want to show? 
-    - COVID overview by Country
-        - Confirmed Cases 
-        - Deaths
-        - Recovered
-        - Mortality Rate
-        - Recovered Rate
-    - Daily increase in COVID vs daily increase in H1N1 from country selection 
-        - Confirmed Cases
-        - Deaths
-    - Country Comparison with COVID vs H1N1 (all-time data located in global tables)
-        - Confirmed Cases
-        - Deaths
-        - Recovered (for H1N1: Recovered = Cases - Deaths)
-    - HeatMap
     
-        
-
-How to update database?
-    - Enter "python ./run.py" in terminal to execute the script and update the database
