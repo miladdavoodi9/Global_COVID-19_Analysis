@@ -1,7 +1,7 @@
 # Project-3---COVID19_vs_H1N1
 Dataset: Data from https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset - updated daily
 
- - Update Dataset with new daily load
+ - Update Dataset with new daily load in "Resources"
  - Enter "python ./run.py" in terminal to execute the script and update the database
  - Run app.py (Flask app)
 
