@@ -1,8 +1,19 @@
 # Global COVID-19 Analysis
 Dataset: Data from https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset - updated daily
 
- - Update Dataset with new daily load in "Resources"
- - Enter "python ./run.py" in terminal to execute the script and update the database
+- Jupyter Notebook shows global analysis for COVID-19
+ - Country comparison for cases, deaths, and recovered
+ - Mortality Rate
+ - Recover Rate
+ - Italy day-by-day
+ - USA day-by-day
+ - Global Visualizations
+ - GeoMap timelapse
+
+ETL Program:
+ - Download new Dataset and load into "Resources"
+ - Enter "python ./run.py" in terminal to execute the script and update the SQLite database
+    - This will create all the necessary tables (shown below), create sqlite database with correct schema.
  - Run app.py (Flask app)
 
 Tables:
@@ -17,4 +28,3 @@ COVID
     
     - "h1n1" = Total dataset for H1N1. Includes country, confirmed cases, Deaths, date data was updated (all cumulative data)
     
- - Jupyter Notebook shows global analysis for how COVID-19 has effected all nations along with comparisons between them.
