@@ -1,4 +1,4 @@
-# Project-3---COVID19_vs_H1N1
+# Global COVID-19 Analysis
 Dataset: Data from https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset - updated daily
 
  - Update Dataset with new daily load in "Resources"
@@ -17,4 +17,4 @@ COVID
     
     - "h1n1" = Total dataset for H1N1. Includes country, confirmed cases, Deaths, date data was updated (all cumulative data)
     
-    
+ - Jupyter Notebook shows global analysis for how COVID-19 has effected all nations along with comparisons between them.
