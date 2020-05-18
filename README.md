@@ -2,13 +2,13 @@
 Dataset: Data from https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset - updated daily
 
 - Jupyter Notebook shows global analysis for COVID-19
- - Country comparison for cases, deaths, and recovered
- - Mortality Rate
- - Recover Rate
- - Italy day-by-day
- - USA day-by-day
- - Global Visualizations
- - GeoMap timelapse
+  - Country comparison for cases, deaths, and recovered
+  - Mortality Rate
+  - Recover Rate
+  - Italy day-by-day
+  - USA day-by-day
+  - Global Visualizations
+  - GeoMap timelapse
 
 ETL Program:
  - Download new Dataset and load into "Resources"
