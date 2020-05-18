@@ -1,6 +1,7 @@
 # Global COVID-19 Analysis
 Dataset: Data from https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset - updated daily
 
+Part 1: Notebook Analysis
 - Jupyter Notebook shows global analysis for COVID-19
   - Country comparison for cases, deaths, and recovered
   - Mortality Rate
@@ -10,6 +11,7 @@ Dataset: Data from https://www.kaggle.com/sudalairajkumar/novel-corona-virus-201
   - Global Visualizations
   - GeoMap timelapse
 
+Part 2: Visualization and H1N1 Comparison
 ETL Program:
  - Download new Dataset and load into "Resources"
  - Enter "python ./run.py" in terminal to execute the script and update the SQLite database
