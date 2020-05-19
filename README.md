@@ -1,5 +1,14 @@
 # Global COVID-19 Analysis
+
+# Summary:
+It is March 15th in the United States and we have been watching the world with a growing virus that is spreading all over the world. It is only a matter of time until it begins to hit the United States. There has been quite a bit of talk about the legitimacy of numbers that is being reported.
+
+Here I build a notebook that shows the growing COVID-19 pandemic all around the world and how each country compares to each other. The ability to visualiaze this data will allow us to better understand the seriousness of the issue as well as staying one step ahead of the curve with having up to date knowledge.
+
+# Dataset:
 Dataset: Data from https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset - updated daily
+
+Since we are building a framework that with the hopes of continuasly updating the daily feed of released data, we need a data source that is being updated daily, and coming from the Johns Hopkins University Database. The reliability of data will alter per country. This is heavily dependent on the amount of tests that are available, and their daily reporting ability. The W.H.O is working with countries around the world to enhance data collection for continuas and dynamic problem solving and learning about this new virus.
 
 Part 1: Notebook Analysis (COVID_19_analysis_global.ipynb)
 - Jupyter Notebook shows global analysis for COVID-19
