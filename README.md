@@ -20,6 +20,20 @@ Part 1: Notebook Analysis (COVID_19_analysis_global.ipynb)
   - Global Visualizations
   - GeoMap timelapse
 
+## Visualizations
+
+Visualization showing how many individual countries contribute to the global cases due to COVID-19
+![](images/global_confirmed_cases_by_country.png)
+
+Visualization showing how many individual countries contribute to the global deaths due to COVID-19
+![](images/global_confirmed_deaths_by_country.png)
+
+
+Timelapse visualization showing confirmed cases and mortality rate since January 22nd
+![](images/geomap_cases.png)
+
+
+
 Part 2: Visualization and H1N1 Comparison
 ETL Program:
  - Download new Dataset and load into "Resources"
