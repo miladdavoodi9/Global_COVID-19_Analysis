@@ -20,7 +20,7 @@ Part 1: Notebook Analysis (COVID_19_analysis_global.ipynb)
   - Global Visualizations
   - GeoMap timelapse
 
-## Visualizations
+## Basic Visualizations
 
 Visualization showing how many individual countries contribute to the global cases due to COVID-19
 ![](images/global_confirmed_cases_by_country.png)
@@ -32,7 +32,12 @@ Visualization showing how many individual countries contribute to the global dea
 Timelapse visualization showing confirmed cases and mortality rate since January 22nd
 ![](images/geomap_cases.png)
 
+Look at Italy vs United States
+Italy confirmed cases by day
+![](images/italy_cases_by_day.png)
 
+United States confirmed cases by day
+![](images/us_confirmed_cases_by_day.png)
 
 Part 2: Visualization and H1N1 Comparison
 ETL Program:
