@@ -1,7 +1,7 @@
 # Global COVID-19 Analysis
 Dataset: Data from https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset - updated daily
 
-Part 1: Notebook Analysis
+Part 1: Notebook Analysis (COVID_19_analysis_global.ipynb)
 - Jupyter Notebook shows global analysis for COVID-19
   - Country comparison for cases, deaths, and recovered
   - Mortality Rate
